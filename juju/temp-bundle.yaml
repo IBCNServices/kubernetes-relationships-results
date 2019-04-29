@@ -1,0 +1,233 @@
+applications:
+  consumer0:
+    charm: cs:~tengu-team/sse-consumer-2
+    scale: 1
+  consumer1:
+    charm: cs:~tengu-team/sse-consumer-2
+    scale: 1
+  consumer10:
+    charm: cs:~tengu-team/sse-consumer-2
+    scale: 1
+  consumer11:
+    charm: cs:~tengu-team/sse-consumer-2
+    scale: 1
+  consumer12:
+    charm: cs:~tengu-team/sse-consumer-2
+    scale: 1
+  consumer13:
+    charm: cs:~tengu-team/sse-consumer-2
+    scale: 1
+  consumer14:
+    charm: cs:~tengu-team/sse-consumer-2
+    scale: 1
+  consumer15:
+    charm: cs:~tengu-team/sse-consumer-2
+    scale: 1
+  consumer16:
+    charm: cs:~tengu-team/sse-consumer-2
+    scale: 1
+  consumer17:
+    charm: cs:~tengu-team/sse-consumer-2
+    scale: 1
+  consumer18:
+    charm: cs:~tengu-team/sse-consumer-2
+    scale: 1
+  consumer19:
+    charm: cs:~tengu-team/sse-consumer-2
+    scale: 1
+  consumer2:
+    charm: cs:~tengu-team/sse-consumer-2
+    scale: 1
+  consumer20:
+    charm: cs:~tengu-team/sse-consumer-2
+    scale: 1
+  consumer21:
+    charm: cs:~tengu-team/sse-consumer-2
+    scale: 1
+  consumer22:
+    charm: cs:~tengu-team/sse-consumer-2
+    scale: 1
+  consumer23:
+    charm: cs:~tengu-team/sse-consumer-2
+    scale: 1
+  consumer24:
+    charm: cs:~tengu-team/sse-consumer-2
+    scale: 1
+  consumer25:
+    charm: cs:~tengu-team/sse-consumer-2
+    scale: 1
+  consumer26:
+    charm: cs:~tengu-team/sse-consumer-2
+    scale: 1
+  consumer27:
+    charm: cs:~tengu-team/sse-consumer-2
+    scale: 1
+  consumer28:
+    charm: cs:~tengu-team/sse-consumer-2
+    scale: 1
+  consumer29:
+    charm: cs:~tengu-team/sse-consumer-2
+    scale: 1
+  consumer3:
+    charm: cs:~tengu-team/sse-consumer-2
+    scale: 1
+  consumer30:
+    charm: cs:~tengu-team/sse-consumer-2
+    scale: 1
+  consumer31:
+    charm: cs:~tengu-team/sse-consumer-2
+    scale: 1
+  consumer32:
+    charm: cs:~tengu-team/sse-consumer-2
+    scale: 1
+  consumer33:
+    charm: cs:~tengu-team/sse-consumer-2
+    scale: 1
+  consumer34:
+    charm: cs:~tengu-team/sse-consumer-2
+    scale: 1
+  consumer35:
+    charm: cs:~tengu-team/sse-consumer-2
+    scale: 1
+  consumer36:
+    charm: cs:~tengu-team/sse-consumer-2
+    scale: 1
+  consumer37:
+    charm: cs:~tengu-team/sse-consumer-2
+    scale: 1
+  consumer38:
+    charm: cs:~tengu-team/sse-consumer-2
+    scale: 1
+  consumer39:
+    charm: cs:~tengu-team/sse-consumer-2
+    scale: 1
+  consumer4:
+    charm: cs:~tengu-team/sse-consumer-2
+    scale: 1
+  consumer40:
+    charm: cs:~tengu-team/sse-consumer-2
+    scale: 1
+  consumer41:
+    charm: cs:~tengu-team/sse-consumer-2
+    scale: 1
+  consumer42:
+    charm: cs:~tengu-team/sse-consumer-2
+    scale: 1
+  consumer43:
+    charm: cs:~tengu-team/sse-consumer-2
+    scale: 1
+  consumer44:
+    charm: cs:~tengu-team/sse-consumer-2
+    scale: 1
+  consumer5:
+    charm: cs:~tengu-team/sse-consumer-2
+    scale: 1
+  consumer6:
+    charm: cs:~tengu-team/sse-consumer-2
+    scale: 1
+  consumer7:
+    charm: cs:~tengu-team/sse-consumer-2
+    scale: 1
+  consumer8:
+    charm: cs:~tengu-team/sse-consumer-2
+    scale: 1
+  consumer9:
+    charm: cs:~tengu-team/sse-consumer-2
+    scale: 1
+  endpoint:
+    charm: /home/merlijn/juju-build/sse-endpoint-mock
+    options:
+      base-url: endpoint.example.com
+    scale: 1
+bundle: kubernetes
+relations:
+- - endpoint:sse-endpoint
+  - consumer0:sse-endpoint
+- - endpoint:sse-endpoint
+  - consumer1:sse-endpoint
+- - endpoint:sse-endpoint
+  - consumer2:sse-endpoint
+- - endpoint:sse-endpoint
+  - consumer3:sse-endpoint
+- - endpoint:sse-endpoint
+  - consumer4:sse-endpoint
+- - endpoint:sse-endpoint
+  - consumer5:sse-endpoint
+- - endpoint:sse-endpoint
+  - consumer6:sse-endpoint
+- - endpoint:sse-endpoint
+  - consumer7:sse-endpoint
+- - endpoint:sse-endpoint
+  - consumer8:sse-endpoint
+- - endpoint:sse-endpoint
+  - consumer9:sse-endpoint
+- - endpoint:sse-endpoint
+  - consumer10:sse-endpoint
+- - endpoint:sse-endpoint
+  - consumer11:sse-endpoint
+- - endpoint:sse-endpoint
+  - consumer12:sse-endpoint
+- - endpoint:sse-endpoint
+  - consumer13:sse-endpoint
+- - endpoint:sse-endpoint
+  - consumer14:sse-endpoint
+- - endpoint:sse-endpoint
+  - consumer15:sse-endpoint
+- - endpoint:sse-endpoint
+  - consumer16:sse-endpoint
+- - endpoint:sse-endpoint
+  - consumer17:sse-endpoint
+- - endpoint:sse-endpoint
+  - consumer18:sse-endpoint
+- - endpoint:sse-endpoint
+  - consumer19:sse-endpoint
+- - endpoint:sse-endpoint
+  - consumer20:sse-endpoint
+- - endpoint:sse-endpoint
+  - consumer21:sse-endpoint
+- - endpoint:sse-endpoint
+  - consumer22:sse-endpoint
+- - endpoint:sse-endpoint
+  - consumer23:sse-endpoint
+- - endpoint:sse-endpoint
+  - consumer24:sse-endpoint
+- - endpoint:sse-endpoint
+  - consumer25:sse-endpoint
+- - endpoint:sse-endpoint
+  - consumer26:sse-endpoint
+- - endpoint:sse-endpoint
+  - consumer27:sse-endpoint
+- - endpoint:sse-endpoint
+  - consumer28:sse-endpoint
+- - endpoint:sse-endpoint
+  - consumer29:sse-endpoint
+- - endpoint:sse-endpoint
+  - consumer30:sse-endpoint
+- - endpoint:sse-endpoint
+  - consumer31:sse-endpoint
+- - endpoint:sse-endpoint
+  - consumer32:sse-endpoint
+- - endpoint:sse-endpoint
+  - consumer33:sse-endpoint
+- - endpoint:sse-endpoint
+  - consumer34:sse-endpoint
+- - endpoint:sse-endpoint
+  - consumer35:sse-endpoint
+- - endpoint:sse-endpoint
+  - consumer36:sse-endpoint
+- - endpoint:sse-endpoint
+  - consumer37:sse-endpoint
+- - endpoint:sse-endpoint
+  - consumer38:sse-endpoint
+- - endpoint:sse-endpoint
+  - consumer39:sse-endpoint
+- - endpoint:sse-endpoint
+  - consumer40:sse-endpoint
+- - endpoint:sse-endpoint
+  - consumer41:sse-endpoint
+- - endpoint:sse-endpoint
+  - consumer42:sse-endpoint
+- - endpoint:sse-endpoint
+  - consumer43:sse-endpoint
+- - endpoint:sse-endpoint
+  - consumer44:sse-endpoint

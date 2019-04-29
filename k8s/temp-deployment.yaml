@@ -1,0 +1,66 @@
+apiVersion: v1
+data:
+  BASE_URL: 10endpoint.example.com
+kind: ConfigMap
+metadata:
+  name: sse-consumer-config
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: sse-consumer-0
+  name: sse-consumer-0
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sse-consumer-0
+  template:
+    metadata:
+      labels:
+        app: sse-consumer-0
+        useless-label: 10endpoint.example.com
+    spec:
+      containers:
+      - args:
+        - 'echo BASE_URL: $BASE_URL; /bin/sleep infinity'
+        command:
+        - bash
+        - -c
+        envFrom:
+        - configMapRef:
+            name: sse-consumer-config
+        image: tutum/curl
+        imagePullPolicy: IfNotPresent
+        name: sse-consumer-0
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: sse-consumer-1
+  name: sse-consumer-1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sse-consumer-1
+  template:
+    metadata:
+      labels:
+        app: sse-consumer-1
+        useless-label: 10endpoint.example.com
+    spec:
+      containers:
+      - args:
+        - 'echo BASE_URL: $BASE_URL; /bin/sleep infinity'
+        command:
+        - bash
+        - -c
+        envFrom:
+        - configMapRef:
+            name: sse-consumer-config
+        image: tutum/curl
+        imagePullPolicy: IfNotPresent
+        name: sse-consumer-1

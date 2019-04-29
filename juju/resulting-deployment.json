@@ -1,0 +1,115 @@
+{
+  "kind": "Deployment",
+  "apiVersion": "extensions/v1beta1",
+  "metadata": {
+    "name": "consumer46",
+    "namespace": "k8s-test4-50",
+    "selfLink": "/apis/extensions/v1beta1/namespaces/k8s-test4-50/deployments/consumer46",
+    "uid": "c8d72269-6a6b-11e9-ba1b-005056096241",
+    "resourceVersion": "1008061",
+    "generation": 7,
+    "creationTimestamp": "2019-04-29T10:44:37Z",
+    "labels": {
+      "juju-application": "consumer46",
+      "juju-controller-uuid": "1ce436a4-a136-4431-8a01-47cde152c1e9",
+      "juju-model-uuid": "9d71c7a6-7ac8-4d1a-8cfd-e266a6ce5a8b"
+    },
+    "annotations": {
+      "deployment.kubernetes.io/revision": "7"
+    }
+  },
+  "spec": {
+    "replicas": 1,
+    "selector": {
+      "matchLabels": {
+        "juju-application": "consumer46"
+      }
+    },
+    "template": {
+      "metadata": {
+        "generateName": "consumer46-",
+        "creationTimestamp": null,
+        "labels": {
+          "juju-application": "consumer46",
+          "juju-controller-uuid": "1ce436a4-a136-4431-8a01-47cde152c1e9",
+          "juju-model-uuid": "9d71c7a6-7ac8-4d1a-8cfd-e266a6ce5a8b"
+        }
+      },
+      "spec": {
+        "containers": [
+          {
+            "name": "sse-consumer",
+            "image": "registry.jujucharms.com/tengu-team/sse-consumer/consumer_image@sha256:8f19f5940d2b616809da5d964244ba02e5c5e49893ec47a1a3d32045a995bf05",
+            "command": [
+              "bash",
+              "-c"
+            ],
+            "args": [
+              "echo BASE_URL: $BASE_URL; /bin/sleep infinity"
+            ],
+            "ports": [
+              {
+                "containerPort": 8080,
+                "protocol": "TCP"
+              }
+            ],
+            "env": [
+              {
+                "name": "BASE_URL",
+                "value": "6endpoint.example.com"
+              }
+            ],
+            "resources": {},
+            "terminationMessagePath": "/dev/termination-log",
+            "terminationMessagePolicy": "File",
+            "imagePullPolicy": "IfNotPresent"
+          }
+        ],
+        "restartPolicy": "Always",
+        "terminationGracePeriodSeconds": 30,
+        "dnsPolicy": "ClusterFirst",
+        "securityContext": {},
+        "imagePullSecrets": [
+          {
+            "name": "consumer46-sse-consumer-secret"
+          }
+        ],
+        "schedulerName": "default-scheduler"
+      }
+    },
+    "strategy": {
+      "type": "RollingUpdate",
+      "rollingUpdate": {
+        "maxUnavailable": "25%",
+        "maxSurge": "25%"
+      }
+    },
+    "revisionHistoryLimit": 10,
+    "progressDeadlineSeconds": 600
+  },
+  "status": {
+    "observedGeneration": 7,
+    "replicas": 1,
+    "updatedReplicas": 1,
+    "readyReplicas": 1,
+    "availableReplicas": 1,
+    "conditions": [
+      {
+        "type": "Available",
+        "status": "True",
+        "lastUpdateTime": "2019-04-29T10:44:43Z",
+        "lastTransitionTime": "2019-04-29T10:44:43Z",
+        "reason": "MinimumReplicasAvailable",
+        "message": "Deployment has minimum availability."
+      },
+      {
+        "type": "Progressing",
+        "status": "True",
+        "lastUpdateTime": "2019-04-29T11:06:58Z",
+        "lastTransitionTime": "2019-04-29T10:44:37Z",
+        "reason": "NewReplicaSetAvailable",
+        "message": "ReplicaSet \"consumer46-7f546dbdc6\" has successfully progressed."
+      }
+    ]
+  }
+}

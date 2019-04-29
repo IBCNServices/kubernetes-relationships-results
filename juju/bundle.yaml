@@ -1,0 +1,15 @@
+bundle: kubernetes
+applications:
+  endpoint:
+    charm: /home/merlijn/juju-build/sse-endpoint-mock
+    options:
+      base-url: endpoint.example.com
+    scale: 1
+  # consumer1:
+  #   # sse-consumer-1 is with storage
+  #   # sse-consumer-2 is without storage
+  #   charm: cs:~tengu-team/sse-consumer-2
+  #   scale: 1
+relations:
+# - - endpoint:sse-endpoint
+#   - consumer:sse-endpoint
