@@ -3,7 +3,7 @@ kind: ConfigMap
 metadata:
   name: sse-consumer-config
 data:
-  BASE_URL: 'sse-endpoint.example.com'
+  BASE_URL: 'endpoint.example.com'
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -20,7 +20,9 @@ spec:
     metadata:
       labels:
         app: sse-consumer
+        base-url: endpoint.example.com 
     spec:
+      terminationGracePeriodSeconds: 2
       containers:
       - name: sse-consumer
         image: tutum/curl

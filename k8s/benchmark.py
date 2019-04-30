@@ -56,32 +56,61 @@ def get_num_pods_log(pods, log_snippet, namespace):
     return num_pods_ok
 
 
-def wait_until_pods_log(count, prefix, log_snippet, namespace):
+def wait_until_pods_log(count, prefix, base_url, namespace):
     while(True):
-        pods = get_application_pods(prefix, namespace)
-        iprint("Found {}/{} running pods with prefix {}.".format(len(pods), count, prefix))
-        if (len(pods) < count):
+        try:
+            iprint("getting output")
+            output = str(subprocess.check_output(
+                ['kubectl', '-n', namespace, "logs", "-l", "base-url={}".format(base_url)],
+                universal_newlines=True))
+        except subprocess.CalledProcessError:
+            iprint('Failed to get logs')
             time.sleep(WAIT_TIME)
             continue
 
-        num_pods_ok = get_num_pods_log(pods, log_snippet, namespace)
+        num_pods_ok = output.count(base_url)
+
         if num_pods_ok >= count:
-            iprint("Found {}/{} running pods with prefix {} and log message {}.".format(num_pods_ok, count, prefix, log_snippet))
+            iprint("Found {}/{} running pods with prefix {} and log message {}.".format(num_pods_ok, count, prefix, base_url))
             break
-        # elif num_pods_ok > count:
-        #     iprint("Error: found {}/{} pods with prefix {} and log message {}.".format(num_pods_ok, count, prefix, log_snippet))
-        #     exit(1)
         else:
+            iprint("Found only {}/{} running pods with prefix {} and log message {}.".format(num_pods_ok, count, prefix, base_url))
             time.sleep(WAIT_TIME)
             continue
+
+
+def wait_until_running(count, base_url, namespace):
+    while(True):
+        try:
+            iprint("getting output")
+            output = json.loads(subprocess.check_output(
+                ['kubectl', '-n', namespace, "get", "pods", "-l", "base-url={}".format(base_url), "-o", "json"],
+                universal_newlines=True))
+        except subprocess.CalledProcessError:
+            iprint('Failed to get pods')
+            time.sleep(WAIT_TIME)
+            continue
+
+        pods = [p["metadata"]['name'] for p in output["items"] if (p["status"]["phase"] == "Running")]
+        num_pods_ok = len(pods)
+
+        if num_pods_ok >= count:
+            iprint("Found {}/{} running pods with `base-url` {}.".format(num_pods_ok, count, base_url))
+            break
+        else:
+            iprint("Found only {}/{} running pods with `base-url` {}.".format(num_pods_ok, count, base_url))
+            time.sleep(WAIT_TIME)
+            continue
+
 
 def time_until_ready(num_consumers, prefix, url, message, namespace):
     result = {
         "pods": {},
+        "settled": {},
     }
 
     start_time = time.time()
-    wait_until_pods_log(num_consumers, prefix, url, namespace)
+    wait_until_running(num_consumers, url, namespace)
     finish_time = time.time()
     elapsed_time = finish_time - start_time
     iprint( '########################################'
@@ -97,7 +126,43 @@ def time_until_ready(num_consumers, prefix, url, message, namespace):
     result['pods']['started'] = start_time
     result['pods']['finish'] = finish_time
     result['pods']['elapsed'] = elapsed_time
+
+    wait_until_settled(namespace)
+    finish_time = time.time()
+    elapsed_time = finish_time - start_time
+    iprint( '########################################'
+            '\n SETTLED: {}'
+            '\nStarted at: {}'
+            '\nFinished at: {}'
+            '\nElapsed time: {}'
+            ''.format(
+                message,
+                start_time,
+                finish_time,
+                elapsed_time))
+    result['settled']['started'] = start_time
+    result['settled']['finish'] = finish_time
+    result['settled']['elapsed'] = elapsed_time
+
     return result
+
+
+def wait_until_settled(namespace):
+    start_time = time.time()
+
+    while True and (time.time()<start_time+TIMEOUT):
+        try:
+            output = json.loads(subprocess.check_output(['kubectl', '-n', namespace, 'get', 'pods', '-o', 'json'], universal_newlines=True))
+        except subprocess.CalledProcessError:
+            iprint('Failed to get pods of namespace {}.'.format(namespace))
+            continue
+        pods = [p for p in output["items"] if p["metadata"].get("deletionTimestamp")]
+        if (len(pods) > 0):
+            iprint("Still found {} terminating pods. Waiting..".format(len(pods)))
+            time.sleep(WAIT_TIME)
+        else:
+            iprint("No terminating pods left!")
+            break
 
 
 def remove_deployment(namespace):
@@ -154,7 +219,7 @@ def update_base_url(prefix, namespace, base_url):
         documents.append(conf)
 
         for doc in deployment:
-            doc['spec']["template"]["metadata"]["labels"]["useless-label"] = base_url
+            doc['spec']["template"]["metadata"]["labels"]["base-url"] = base_url
             documents.append(doc)
 
     with open("temp-deployment.yaml", "w") as f:
@@ -188,6 +253,15 @@ def benchmark(num_consumers, namespace):
             result['pods']['finish'],
             result['pods']['elapsed'],
         ))
+        f.write("{};{};{};{};{};{};{}\n".format(
+            namespace,
+            num_consumers,
+            "deploy",
+            "pods",
+            result['settled']['started'],
+            result['settled']['finish'],
+            result['settled']['elapsed'],
+        ))
     #
     # Time that it takes to change the url.
     for i in range(1, 11):
@@ -218,6 +292,15 @@ def benchmark(num_consumers, namespace):
 
 namespace = "k8s-native-test"
 
-for i in range(5, 66, 5):
+# wait_until_settled("k8s-native-test")
+
+for i in range(5, 61, 5):
     benchmark(i, namespace)
+
+# deploy(2, "sse-consumer", "k8s-native-test")
+# wait_until_running(2, "endpoint.example.com", "k8s-native-test")
+# remove_deployment("k8s-native-test")
+
+
+# wait_until_pods_log(60, "sse-consumer", "4endpoint.example.com", namespace)
 
