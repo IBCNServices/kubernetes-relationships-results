@@ -26,65 +26,12 @@ def oprint(*args, **kwargs):
     print("{}, ".format(datetime.now()), *args, file=sys.stdout, **kwargs)
 
 
-def get_application_pods(prefix, namespace):
-    try:
-        output = json.loads(subprocess.check_output(['kubectl', '-n', namespace, 'get', 'pods', '-o', 'json'], universal_newlines=True))
-    except subprocess.CalledProcessError:
-        iprint('Failed to get pods of namespace {}.'.format(namespace))
-        return []
-    # Only get application pods
-    pods = [p for p in output["items"] if p["metadata"]["name"].startswith(prefix)]
-    pods = [p for p in pods if p["status"]["phase"] == "Running"]
-    pods = [p["metadata"]['name'] for p in pods]
-    return pods
-
-
-def get_num_pods_log(pods, log_snippet, namespace):
-    num_pods_ok = 0
-    for pod in pods:
-        try:
-            output = str(subprocess.check_output(['kubectl', '-n', namespace, 'logs', pod], universal_newlines=True))
-        except subprocess.CalledProcessError:
-            iprint('Failed to get logs of pod {}.'.format(pod))
-            continue
-
-        if log_snippet in output:
-            iprint('Pod {} has "{}" in output.'.format(pod, log_snippet))
-            num_pods_ok = num_pods_ok + 1
-        else:
-            iprint('Pod {} doesn\'t have "{}" in output. Output is "{}".'.format(pod, log_snippet, output.rstrip()))
-    return num_pods_ok
-
-
-def wait_until_pods_log(count, prefix, base_url, namespace):
-    while(True):
-        try:
-            iprint("getting output")
-            output = str(subprocess.check_output(
-                ['kubectl', '-n', namespace, "logs", "-l", "base-url={}".format(base_url)],
-                universal_newlines=True))
-        except subprocess.CalledProcessError:
-            iprint('Failed to get logs')
-            time.sleep(WAIT_TIME)
-            continue
-
-        num_pods_ok = output.count(base_url)
-
-        if num_pods_ok >= count:
-            iprint("Found {}/{} running pods with prefix {} and log message {}.".format(num_pods_ok, count, prefix, base_url))
-            break
-        else:
-            iprint("Found only {}/{} running pods with prefix {} and log message {}.".format(num_pods_ok, count, prefix, base_url))
-            time.sleep(WAIT_TIME)
-            continue
-
-
 def wait_until_running(count, base_url, namespace):
     while(True):
         try:
-            iprint("getting output")
+            iprint("getting running pods")
             output = json.loads(subprocess.check_output(
-                ['kubectl', '-n', namespace, "get", "pods", "-l", "base-url={}".format(base_url), "-o", "json"],
+                ['kubectl', '-n', namespace, "get", "pods", "-l", "BASE_URL={}".format(base_url), "-o", "json"],
                 universal_newlines=True))
         except subprocess.CalledProcessError:
             iprint('Failed to get pods')
@@ -95,15 +42,15 @@ def wait_until_running(count, base_url, namespace):
         num_pods_ok = len(pods)
 
         if num_pods_ok >= count:
-            iprint("Found {}/{} running pods with `base-url` {}.".format(num_pods_ok, count, base_url))
+            iprint("Found {}/{} running pods with `BASE_URL` {}.".format(num_pods_ok, count, base_url))
             break
         else:
-            iprint("Found only {}/{} running pods with `base-url` {}.".format(num_pods_ok, count, base_url))
+            iprint("Found only {}/{} running pods with `BASE_URL` {}.".format(num_pods_ok, count, base_url))
             time.sleep(WAIT_TIME)
             continue
 
 
-def time_until_ready(num_consumers, prefix, url, message, namespace):
+def time_until_ready(num_consumers, url, message, namespace):
     result = {
         "pods": {},
         "settled": {},
@@ -197,9 +144,7 @@ def deploy(num_consumers, prefix, namespace):
 
     for i in range(0,num_consumers):
         cons_name = "sse-consumer-{}".format(i)
-        cons_template["metadata"]["labels"]["app"] = cons_name
         cons_template["metadata"]["name"] = cons_name
-        cons_template["spec"]["selector"]["matchLabels"]["app"] = cons_name
         cons_template["spec"]["template"]["metadata"]["labels"]["app"] = cons_name
         cons_template["spec"]["template"]["spec"]["containers"][0]["name"] = cons_name
         documents.append(copy.deepcopy(cons_template))
@@ -215,11 +160,11 @@ def update_base_url(prefix, namespace, base_url):
     with open('temp-deployment.yaml') as f:
         deployment = yaml.load_all(f)
         conf = next(deployment)
-        conf["data"]["BASE_URL"] = base_url
+        conf["metadata"]["annotations"]["BASE_URL"] = base_url
+        conf["spec"]["externalName"] = base_url
         documents.append(conf)
 
         for doc in deployment:
-            doc['spec']["template"]["metadata"]["labels"]["base-url"] = base_url
             documents.append(doc)
 
     with open("temp-deployment.yaml", "w") as f:
@@ -234,16 +179,14 @@ def benchmark(num_consumers, namespace):
         
     base_url = "endpoint.example.com"
 
-    deployment_name = "sse-consumer"
-
     #
     # Time the deployment of the cluster with X units.
-    deploy(num_consumers, deployment_name, namespace)
+    deploy(num_consumers, "sse-consumer", namespace)
 
-    result = time_until_ready(num_consumers, deployment_name, base_url, "Deploy {} consumers".format(num_consumers), namespace)
+    result = time_until_ready(num_consumers, base_url, "Deploy {} consumers".format(num_consumers), namespace)
 
     with open("benchmark.csv", "a") as f:
-#       f.write("model_name;num_consumers;action;event;start;end;elapsed\n")
+        # model_name;num_consumers;action;event;start;end;elapsed
         f.write("{};{};{};{};{};{};{}\n".format(
             namespace,
             num_consumers,
@@ -266,9 +209,9 @@ def benchmark(num_consumers, namespace):
     # Time that it takes to change the url.
     for i in range(1, 11):
         new_url = str(i) + base_url
-        update_base_url(deployment_name, namespace, new_url)
+        update_base_url("sse-consumer", namespace, new_url)
 
-        result = time_until_ready(num_consumers, deployment_name, new_url, "Change {} consumers".format(num_consumers), namespace)
+        result = time_until_ready(num_consumers, new_url, "Change {} consumers".format(num_consumers), namespace)
         with open("benchmark.csv", "a") as f:
             f.write("{};{};{};{};{};{};{}\n".format(
                 namespace,
@@ -289,21 +232,28 @@ def benchmark(num_consumers, namespace):
                 result['settled']['elapsed'],
             ))
 
+
     #
     # Delete model as best as we can
     remove_deployment(namespace)
-    wait_until_empty(deployment_name, namespace)
+    wait_until_empty("sse-consumer", namespace)
 
 
 
 
 
-namespace = "k8s-native-test"
+namespace = "k8s-tengu-test"
 
-# wait_until_settled("k8s-native-test")
 
-for i in range(5, 56, 5):
-    benchmark(i, namespace)
+# # time_until_ready(1, "idlab-iot.tengu.io", "MY_MESSAGE" ,namespace)
+# # deploy(5, "sse-consumer", namespace)
+# update_base_url("sse-consumer", namespace, "18sse-endpoint.example.com")
+# time_until_ready(5, "18sse-endpoint.example.com", "MY_MESSAGE" ,namespace)
+
+benchmark(5, namespace)
+
+# for i in range(5, 61, 5):
+#     benchmark(i, namespace)
 
 # deploy(2, "sse-consumer", "k8s-native-test")
 # wait_until_running(2, "endpoint.example.com", "k8s-native-test")

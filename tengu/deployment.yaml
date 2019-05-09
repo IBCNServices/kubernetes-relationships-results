@@ -1,0 +1,32 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: "sse-endpoint"
+  annotations:
+    BASE_URL: "endpoint.example.com"
+  labels:
+    tengu.io/provides: "sse"
+spec:
+  type: ExternalName
+  externalName: endpoint.example.com
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: sse-consumer
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: sse-consumer
+        tengu.io/consumes: "sse"
+        tengu.io/relations: "sse-endpoint"
+    spec:
+      terminationGracePeriodSeconds: 2
+      containers:
+        - name: sse-consumer
+          image: tutum/curl
+          command: ["bash", "-c"]
+          args: ["echo BASE_URL: $BASE_URL; /bin/sleep infinity"]
+          imagePullPolicy: IfNotPresent
