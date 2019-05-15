@@ -250,10 +250,10 @@ namespace = "k8s-tengu-test"
 # update_base_url("sse-consumer", namespace, "18sse-endpoint.example.com")
 # time_until_ready(5, "18sse-endpoint.example.com", "MY_MESSAGE" ,namespace)
 
-benchmark(5, namespace)
+# benchmark(5, namespace)
 
-# for i in range(5, 61, 5):
-#     benchmark(i, namespace)
+for i in range(5, 56, 5):
+    benchmark(i, namespace)
 
 # deploy(2, "sse-consumer", "k8s-native-test")
 # wait_until_running(2, "endpoint.example.com", "k8s-native-test")
