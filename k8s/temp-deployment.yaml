@@ -1,0 +1,1711 @@
+apiVersion: v1
+data:
+  BASE_URL: 10endpoint.example.com
+kind: ConfigMap
+metadata:
+  name: sse-consumer-config
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: sse-consumer-0
+  name: sse-consumer-0
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sse-consumer-0
+  template:
+    metadata:
+      labels:
+        app: sse-consumer-0
+        base-url: 10endpoint.example.com
+    spec:
+      containers:
+      - args:
+        - 'echo BASE_URL: $BASE_URL; /bin/sleep infinity'
+        command:
+        - bash
+        - -c
+        envFrom:
+        - configMapRef:
+            name: sse-consumer-config
+        image: tutum/curl
+        imagePullPolicy: IfNotPresent
+        name: sse-consumer-0
+      terminationGracePeriodSeconds: 2
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: sse-consumer-1
+  name: sse-consumer-1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sse-consumer-1
+  template:
+    metadata:
+      labels:
+        app: sse-consumer-1
+        base-url: 10endpoint.example.com
+    spec:
+      containers:
+      - args:
+        - 'echo BASE_URL: $BASE_URL; /bin/sleep infinity'
+        command:
+        - bash
+        - -c
+        envFrom:
+        - configMapRef:
+            name: sse-consumer-config
+        image: tutum/curl
+        imagePullPolicy: IfNotPresent
+        name: sse-consumer-1
+      terminationGracePeriodSeconds: 2
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: sse-consumer-2
+  name: sse-consumer-2
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sse-consumer-2
+  template:
+    metadata:
+      labels:
+        app: sse-consumer-2
+        base-url: 10endpoint.example.com
+    spec:
+      containers:
+      - args:
+        - 'echo BASE_URL: $BASE_URL; /bin/sleep infinity'
+        command:
+        - bash
+        - -c
+        envFrom:
+        - configMapRef:
+            name: sse-consumer-config
+        image: tutum/curl
+        imagePullPolicy: IfNotPresent
+        name: sse-consumer-2
+      terminationGracePeriodSeconds: 2
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: sse-consumer-3
+  name: sse-consumer-3
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sse-consumer-3
+  template:
+    metadata:
+      labels:
+        app: sse-consumer-3
+        base-url: 10endpoint.example.com
+    spec:
+      containers:
+      - args:
+        - 'echo BASE_URL: $BASE_URL; /bin/sleep infinity'
+        command:
+        - bash
+        - -c
+        envFrom:
+        - configMapRef:
+            name: sse-consumer-config
+        image: tutum/curl
+        imagePullPolicy: IfNotPresent
+        name: sse-consumer-3
+      terminationGracePeriodSeconds: 2
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: sse-consumer-4
+  name: sse-consumer-4
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sse-consumer-4
+  template:
+    metadata:
+      labels:
+        app: sse-consumer-4
+        base-url: 10endpoint.example.com
+    spec:
+      containers:
+      - args:
+        - 'echo BASE_URL: $BASE_URL; /bin/sleep infinity'
+        command:
+        - bash
+        - -c
+        envFrom:
+        - configMapRef:
+            name: sse-consumer-config
+        image: tutum/curl
+        imagePullPolicy: IfNotPresent
+        name: sse-consumer-4
+      terminationGracePeriodSeconds: 2
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: sse-consumer-5
+  name: sse-consumer-5
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sse-consumer-5
+  template:
+    metadata:
+      labels:
+        app: sse-consumer-5
+        base-url: 10endpoint.example.com
+    spec:
+      containers:
+      - args:
+        - 'echo BASE_URL: $BASE_URL; /bin/sleep infinity'
+        command:
+        - bash
+        - -c
+        envFrom:
+        - configMapRef:
+            name: sse-consumer-config
+        image: tutum/curl
+        imagePullPolicy: IfNotPresent
+        name: sse-consumer-5
+      terminationGracePeriodSeconds: 2
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: sse-consumer-6
+  name: sse-consumer-6
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sse-consumer-6
+  template:
+    metadata:
+      labels:
+        app: sse-consumer-6
+        base-url: 10endpoint.example.com
+    spec:
+      containers:
+      - args:
+        - 'echo BASE_URL: $BASE_URL; /bin/sleep infinity'
+        command:
+        - bash
+        - -c
+        envFrom:
+        - configMapRef:
+            name: sse-consumer-config
+        image: tutum/curl
+        imagePullPolicy: IfNotPresent
+        name: sse-consumer-6
+      terminationGracePeriodSeconds: 2
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: sse-consumer-7
+  name: sse-consumer-7
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sse-consumer-7
+  template:
+    metadata:
+      labels:
+        app: sse-consumer-7
+        base-url: 10endpoint.example.com
+    spec:
+      containers:
+      - args:
+        - 'echo BASE_URL: $BASE_URL; /bin/sleep infinity'
+        command:
+        - bash
+        - -c
+        envFrom:
+        - configMapRef:
+            name: sse-consumer-config
+        image: tutum/curl
+        imagePullPolicy: IfNotPresent
+        name: sse-consumer-7
+      terminationGracePeriodSeconds: 2
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: sse-consumer-8
+  name: sse-consumer-8
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sse-consumer-8
+  template:
+    metadata:
+      labels:
+        app: sse-consumer-8
+        base-url: 10endpoint.example.com
+    spec:
+      containers:
+      - args:
+        - 'echo BASE_URL: $BASE_URL; /bin/sleep infinity'
+        command:
+        - bash
+        - -c
+        envFrom:
+        - configMapRef:
+            name: sse-consumer-config
+        image: tutum/curl
+        imagePullPolicy: IfNotPresent
+        name: sse-consumer-8
+      terminationGracePeriodSeconds: 2
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: sse-consumer-9
+  name: sse-consumer-9
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sse-consumer-9
+  template:
+    metadata:
+      labels:
+        app: sse-consumer-9
+        base-url: 10endpoint.example.com
+    spec:
+      containers:
+      - args:
+        - 'echo BASE_URL: $BASE_URL; /bin/sleep infinity'
+        command:
+        - bash
+        - -c
+        envFrom:
+        - configMapRef:
+            name: sse-consumer-config
+        image: tutum/curl
+        imagePullPolicy: IfNotPresent
+        name: sse-consumer-9
+      terminationGracePeriodSeconds: 2
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: sse-consumer-10
+  name: sse-consumer-10
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sse-consumer-10
+  template:
+    metadata:
+      labels:
+        app: sse-consumer-10
+        base-url: 10endpoint.example.com
+    spec:
+      containers:
+      - args:
+        - 'echo BASE_URL: $BASE_URL; /bin/sleep infinity'
+        command:
+        - bash
+        - -c
+        envFrom:
+        - configMapRef:
+            name: sse-consumer-config
+        image: tutum/curl
+        imagePullPolicy: IfNotPresent
+        name: sse-consumer-10
+      terminationGracePeriodSeconds: 2
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: sse-consumer-11
+  name: sse-consumer-11
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sse-consumer-11
+  template:
+    metadata:
+      labels:
+        app: sse-consumer-11
+        base-url: 10endpoint.example.com
+    spec:
+      containers:
+      - args:
+        - 'echo BASE_URL: $BASE_URL; /bin/sleep infinity'
+        command:
+        - bash
+        - -c
+        envFrom:
+        - configMapRef:
+            name: sse-consumer-config
+        image: tutum/curl
+        imagePullPolicy: IfNotPresent
+        name: sse-consumer-11
+      terminationGracePeriodSeconds: 2
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: sse-consumer-12
+  name: sse-consumer-12
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sse-consumer-12
+  template:
+    metadata:
+      labels:
+        app: sse-consumer-12
+        base-url: 10endpoint.example.com
+    spec:
+      containers:
+      - args:
+        - 'echo BASE_URL: $BASE_URL; /bin/sleep infinity'
+        command:
+        - bash
+        - -c
+        envFrom:
+        - configMapRef:
+            name: sse-consumer-config
+        image: tutum/curl
+        imagePullPolicy: IfNotPresent
+        name: sse-consumer-12
+      terminationGracePeriodSeconds: 2
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: sse-consumer-13
+  name: sse-consumer-13
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sse-consumer-13
+  template:
+    metadata:
+      labels:
+        app: sse-consumer-13
+        base-url: 10endpoint.example.com
+    spec:
+      containers:
+      - args:
+        - 'echo BASE_URL: $BASE_URL; /bin/sleep infinity'
+        command:
+        - bash
+        - -c
+        envFrom:
+        - configMapRef:
+            name: sse-consumer-config
+        image: tutum/curl
+        imagePullPolicy: IfNotPresent
+        name: sse-consumer-13
+      terminationGracePeriodSeconds: 2
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: sse-consumer-14
+  name: sse-consumer-14
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sse-consumer-14
+  template:
+    metadata:
+      labels:
+        app: sse-consumer-14
+        base-url: 10endpoint.example.com
+    spec:
+      containers:
+      - args:
+        - 'echo BASE_URL: $BASE_URL; /bin/sleep infinity'
+        command:
+        - bash
+        - -c
+        envFrom:
+        - configMapRef:
+            name: sse-consumer-config
+        image: tutum/curl
+        imagePullPolicy: IfNotPresent
+        name: sse-consumer-14
+      terminationGracePeriodSeconds: 2
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: sse-consumer-15
+  name: sse-consumer-15
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sse-consumer-15
+  template:
+    metadata:
+      labels:
+        app: sse-consumer-15
+        base-url: 10endpoint.example.com
+    spec:
+      containers:
+      - args:
+        - 'echo BASE_URL: $BASE_URL; /bin/sleep infinity'
+        command:
+        - bash
+        - -c
+        envFrom:
+        - configMapRef:
+            name: sse-consumer-config
+        image: tutum/curl
+        imagePullPolicy: IfNotPresent
+        name: sse-consumer-15
+      terminationGracePeriodSeconds: 2
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: sse-consumer-16
+  name: sse-consumer-16
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sse-consumer-16
+  template:
+    metadata:
+      labels:
+        app: sse-consumer-16
+        base-url: 10endpoint.example.com
+    spec:
+      containers:
+      - args:
+        - 'echo BASE_URL: $BASE_URL; /bin/sleep infinity'
+        command:
+        - bash
+        - -c
+        envFrom:
+        - configMapRef:
+            name: sse-consumer-config
+        image: tutum/curl
+        imagePullPolicy: IfNotPresent
+        name: sse-consumer-16
+      terminationGracePeriodSeconds: 2
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: sse-consumer-17
+  name: sse-consumer-17
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sse-consumer-17
+  template:
+    metadata:
+      labels:
+        app: sse-consumer-17
+        base-url: 10endpoint.example.com
+    spec:
+      containers:
+      - args:
+        - 'echo BASE_URL: $BASE_URL; /bin/sleep infinity'
+        command:
+        - bash
+        - -c
+        envFrom:
+        - configMapRef:
+            name: sse-consumer-config
+        image: tutum/curl
+        imagePullPolicy: IfNotPresent
+        name: sse-consumer-17
+      terminationGracePeriodSeconds: 2
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: sse-consumer-18
+  name: sse-consumer-18
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sse-consumer-18
+  template:
+    metadata:
+      labels:
+        app: sse-consumer-18
+        base-url: 10endpoint.example.com
+    spec:
+      containers:
+      - args:
+        - 'echo BASE_URL: $BASE_URL; /bin/sleep infinity'
+        command:
+        - bash
+        - -c
+        envFrom:
+        - configMapRef:
+            name: sse-consumer-config
+        image: tutum/curl
+        imagePullPolicy: IfNotPresent
+        name: sse-consumer-18
+      terminationGracePeriodSeconds: 2
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: sse-consumer-19
+  name: sse-consumer-19
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sse-consumer-19
+  template:
+    metadata:
+      labels:
+        app: sse-consumer-19
+        base-url: 10endpoint.example.com
+    spec:
+      containers:
+      - args:
+        - 'echo BASE_URL: $BASE_URL; /bin/sleep infinity'
+        command:
+        - bash
+        - -c
+        envFrom:
+        - configMapRef:
+            name: sse-consumer-config
+        image: tutum/curl
+        imagePullPolicy: IfNotPresent
+        name: sse-consumer-19
+      terminationGracePeriodSeconds: 2
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: sse-consumer-20
+  name: sse-consumer-20
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sse-consumer-20
+  template:
+    metadata:
+      labels:
+        app: sse-consumer-20
+        base-url: 10endpoint.example.com
+    spec:
+      containers:
+      - args:
+        - 'echo BASE_URL: $BASE_URL; /bin/sleep infinity'
+        command:
+        - bash
+        - -c
+        envFrom:
+        - configMapRef:
+            name: sse-consumer-config
+        image: tutum/curl
+        imagePullPolicy: IfNotPresent
+        name: sse-consumer-20
+      terminationGracePeriodSeconds: 2
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: sse-consumer-21
+  name: sse-consumer-21
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sse-consumer-21
+  template:
+    metadata:
+      labels:
+        app: sse-consumer-21
+        base-url: 10endpoint.example.com
+    spec:
+      containers:
+      - args:
+        - 'echo BASE_URL: $BASE_URL; /bin/sleep infinity'
+        command:
+        - bash
+        - -c
+        envFrom:
+        - configMapRef:
+            name: sse-consumer-config
+        image: tutum/curl
+        imagePullPolicy: IfNotPresent
+        name: sse-consumer-21
+      terminationGracePeriodSeconds: 2
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: sse-consumer-22
+  name: sse-consumer-22
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sse-consumer-22
+  template:
+    metadata:
+      labels:
+        app: sse-consumer-22
+        base-url: 10endpoint.example.com
+    spec:
+      containers:
+      - args:
+        - 'echo BASE_URL: $BASE_URL; /bin/sleep infinity'
+        command:
+        - bash
+        - -c
+        envFrom:
+        - configMapRef:
+            name: sse-consumer-config
+        image: tutum/curl
+        imagePullPolicy: IfNotPresent
+        name: sse-consumer-22
+      terminationGracePeriodSeconds: 2
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: sse-consumer-23
+  name: sse-consumer-23
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sse-consumer-23
+  template:
+    metadata:
+      labels:
+        app: sse-consumer-23
+        base-url: 10endpoint.example.com
+    spec:
+      containers:
+      - args:
+        - 'echo BASE_URL: $BASE_URL; /bin/sleep infinity'
+        command:
+        - bash
+        - -c
+        envFrom:
+        - configMapRef:
+            name: sse-consumer-config
+        image: tutum/curl
+        imagePullPolicy: IfNotPresent
+        name: sse-consumer-23
+      terminationGracePeriodSeconds: 2
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: sse-consumer-24
+  name: sse-consumer-24
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sse-consumer-24
+  template:
+    metadata:
+      labels:
+        app: sse-consumer-24
+        base-url: 10endpoint.example.com
+    spec:
+      containers:
+      - args:
+        - 'echo BASE_URL: $BASE_URL; /bin/sleep infinity'
+        command:
+        - bash
+        - -c
+        envFrom:
+        - configMapRef:
+            name: sse-consumer-config
+        image: tutum/curl
+        imagePullPolicy: IfNotPresent
+        name: sse-consumer-24
+      terminationGracePeriodSeconds: 2
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: sse-consumer-25
+  name: sse-consumer-25
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sse-consumer-25
+  template:
+    metadata:
+      labels:
+        app: sse-consumer-25
+        base-url: 10endpoint.example.com
+    spec:
+      containers:
+      - args:
+        - 'echo BASE_URL: $BASE_URL; /bin/sleep infinity'
+        command:
+        - bash
+        - -c
+        envFrom:
+        - configMapRef:
+            name: sse-consumer-config
+        image: tutum/curl
+        imagePullPolicy: IfNotPresent
+        name: sse-consumer-25
+      terminationGracePeriodSeconds: 2
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: sse-consumer-26
+  name: sse-consumer-26
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sse-consumer-26
+  template:
+    metadata:
+      labels:
+        app: sse-consumer-26
+        base-url: 10endpoint.example.com
+    spec:
+      containers:
+      - args:
+        - 'echo BASE_URL: $BASE_URL; /bin/sleep infinity'
+        command:
+        - bash
+        - -c
+        envFrom:
+        - configMapRef:
+            name: sse-consumer-config
+        image: tutum/curl
+        imagePullPolicy: IfNotPresent
+        name: sse-consumer-26
+      terminationGracePeriodSeconds: 2
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: sse-consumer-27
+  name: sse-consumer-27
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sse-consumer-27
+  template:
+    metadata:
+      labels:
+        app: sse-consumer-27
+        base-url: 10endpoint.example.com
+    spec:
+      containers:
+      - args:
+        - 'echo BASE_URL: $BASE_URL; /bin/sleep infinity'
+        command:
+        - bash
+        - -c
+        envFrom:
+        - configMapRef:
+            name: sse-consumer-config
+        image: tutum/curl
+        imagePullPolicy: IfNotPresent
+        name: sse-consumer-27
+      terminationGracePeriodSeconds: 2
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: sse-consumer-28
+  name: sse-consumer-28
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sse-consumer-28
+  template:
+    metadata:
+      labels:
+        app: sse-consumer-28
+        base-url: 10endpoint.example.com
+    spec:
+      containers:
+      - args:
+        - 'echo BASE_URL: $BASE_URL; /bin/sleep infinity'
+        command:
+        - bash
+        - -c
+        envFrom:
+        - configMapRef:
+            name: sse-consumer-config
+        image: tutum/curl
+        imagePullPolicy: IfNotPresent
+        name: sse-consumer-28
+      terminationGracePeriodSeconds: 2
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: sse-consumer-29
+  name: sse-consumer-29
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sse-consumer-29
+  template:
+    metadata:
+      labels:
+        app: sse-consumer-29
+        base-url: 10endpoint.example.com
+    spec:
+      containers:
+      - args:
+        - 'echo BASE_URL: $BASE_URL; /bin/sleep infinity'
+        command:
+        - bash
+        - -c
+        envFrom:
+        - configMapRef:
+            name: sse-consumer-config
+        image: tutum/curl
+        imagePullPolicy: IfNotPresent
+        name: sse-consumer-29
+      terminationGracePeriodSeconds: 2
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: sse-consumer-30
+  name: sse-consumer-30
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sse-consumer-30
+  template:
+    metadata:
+      labels:
+        app: sse-consumer-30
+        base-url: 10endpoint.example.com
+    spec:
+      containers:
+      - args:
+        - 'echo BASE_URL: $BASE_URL; /bin/sleep infinity'
+        command:
+        - bash
+        - -c
+        envFrom:
+        - configMapRef:
+            name: sse-consumer-config
+        image: tutum/curl
+        imagePullPolicy: IfNotPresent
+        name: sse-consumer-30
+      terminationGracePeriodSeconds: 2
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: sse-consumer-31
+  name: sse-consumer-31
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sse-consumer-31
+  template:
+    metadata:
+      labels:
+        app: sse-consumer-31
+        base-url: 10endpoint.example.com
+    spec:
+      containers:
+      - args:
+        - 'echo BASE_URL: $BASE_URL; /bin/sleep infinity'
+        command:
+        - bash
+        - -c
+        envFrom:
+        - configMapRef:
+            name: sse-consumer-config
+        image: tutum/curl
+        imagePullPolicy: IfNotPresent
+        name: sse-consumer-31
+      terminationGracePeriodSeconds: 2
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: sse-consumer-32
+  name: sse-consumer-32
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sse-consumer-32
+  template:
+    metadata:
+      labels:
+        app: sse-consumer-32
+        base-url: 10endpoint.example.com
+    spec:
+      containers:
+      - args:
+        - 'echo BASE_URL: $BASE_URL; /bin/sleep infinity'
+        command:
+        - bash
+        - -c
+        envFrom:
+        - configMapRef:
+            name: sse-consumer-config
+        image: tutum/curl
+        imagePullPolicy: IfNotPresent
+        name: sse-consumer-32
+      terminationGracePeriodSeconds: 2
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: sse-consumer-33
+  name: sse-consumer-33
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sse-consumer-33
+  template:
+    metadata:
+      labels:
+        app: sse-consumer-33
+        base-url: 10endpoint.example.com
+    spec:
+      containers:
+      - args:
+        - 'echo BASE_URL: $BASE_URL; /bin/sleep infinity'
+        command:
+        - bash
+        - -c
+        envFrom:
+        - configMapRef:
+            name: sse-consumer-config
+        image: tutum/curl
+        imagePullPolicy: IfNotPresent
+        name: sse-consumer-33
+      terminationGracePeriodSeconds: 2
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: sse-consumer-34
+  name: sse-consumer-34
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sse-consumer-34
+  template:
+    metadata:
+      labels:
+        app: sse-consumer-34
+        base-url: 10endpoint.example.com
+    spec:
+      containers:
+      - args:
+        - 'echo BASE_URL: $BASE_URL; /bin/sleep infinity'
+        command:
+        - bash
+        - -c
+        envFrom:
+        - configMapRef:
+            name: sse-consumer-config
+        image: tutum/curl
+        imagePullPolicy: IfNotPresent
+        name: sse-consumer-34
+      terminationGracePeriodSeconds: 2
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: sse-consumer-35
+  name: sse-consumer-35
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sse-consumer-35
+  template:
+    metadata:
+      labels:
+        app: sse-consumer-35
+        base-url: 10endpoint.example.com
+    spec:
+      containers:
+      - args:
+        - 'echo BASE_URL: $BASE_URL; /bin/sleep infinity'
+        command:
+        - bash
+        - -c
+        envFrom:
+        - configMapRef:
+            name: sse-consumer-config
+        image: tutum/curl
+        imagePullPolicy: IfNotPresent
+        name: sse-consumer-35
+      terminationGracePeriodSeconds: 2
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: sse-consumer-36
+  name: sse-consumer-36
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sse-consumer-36
+  template:
+    metadata:
+      labels:
+        app: sse-consumer-36
+        base-url: 10endpoint.example.com
+    spec:
+      containers:
+      - args:
+        - 'echo BASE_URL: $BASE_URL; /bin/sleep infinity'
+        command:
+        - bash
+        - -c
+        envFrom:
+        - configMapRef:
+            name: sse-consumer-config
+        image: tutum/curl
+        imagePullPolicy: IfNotPresent
+        name: sse-consumer-36
+      terminationGracePeriodSeconds: 2
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: sse-consumer-37
+  name: sse-consumer-37
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sse-consumer-37
+  template:
+    metadata:
+      labels:
+        app: sse-consumer-37
+        base-url: 10endpoint.example.com
+    spec:
+      containers:
+      - args:
+        - 'echo BASE_URL: $BASE_URL; /bin/sleep infinity'
+        command:
+        - bash
+        - -c
+        envFrom:
+        - configMapRef:
+            name: sse-consumer-config
+        image: tutum/curl
+        imagePullPolicy: IfNotPresent
+        name: sse-consumer-37
+      terminationGracePeriodSeconds: 2
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: sse-consumer-38
+  name: sse-consumer-38
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sse-consumer-38
+  template:
+    metadata:
+      labels:
+        app: sse-consumer-38
+        base-url: 10endpoint.example.com
+    spec:
+      containers:
+      - args:
+        - 'echo BASE_URL: $BASE_URL; /bin/sleep infinity'
+        command:
+        - bash
+        - -c
+        envFrom:
+        - configMapRef:
+            name: sse-consumer-config
+        image: tutum/curl
+        imagePullPolicy: IfNotPresent
+        name: sse-consumer-38
+      terminationGracePeriodSeconds: 2
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: sse-consumer-39
+  name: sse-consumer-39
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sse-consumer-39
+  template:
+    metadata:
+      labels:
+        app: sse-consumer-39
+        base-url: 10endpoint.example.com
+    spec:
+      containers:
+      - args:
+        - 'echo BASE_URL: $BASE_URL; /bin/sleep infinity'
+        command:
+        - bash
+        - -c
+        envFrom:
+        - configMapRef:
+            name: sse-consumer-config
+        image: tutum/curl
+        imagePullPolicy: IfNotPresent
+        name: sse-consumer-39
+      terminationGracePeriodSeconds: 2
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: sse-consumer-40
+  name: sse-consumer-40
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sse-consumer-40
+  template:
+    metadata:
+      labels:
+        app: sse-consumer-40
+        base-url: 10endpoint.example.com
+    spec:
+      containers:
+      - args:
+        - 'echo BASE_URL: $BASE_URL; /bin/sleep infinity'
+        command:
+        - bash
+        - -c
+        envFrom:
+        - configMapRef:
+            name: sse-consumer-config
+        image: tutum/curl
+        imagePullPolicy: IfNotPresent
+        name: sse-consumer-40
+      terminationGracePeriodSeconds: 2
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: sse-consumer-41
+  name: sse-consumer-41
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sse-consumer-41
+  template:
+    metadata:
+      labels:
+        app: sse-consumer-41
+        base-url: 10endpoint.example.com
+    spec:
+      containers:
+      - args:
+        - 'echo BASE_URL: $BASE_URL; /bin/sleep infinity'
+        command:
+        - bash
+        - -c
+        envFrom:
+        - configMapRef:
+            name: sse-consumer-config
+        image: tutum/curl
+        imagePullPolicy: IfNotPresent
+        name: sse-consumer-41
+      terminationGracePeriodSeconds: 2
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: sse-consumer-42
+  name: sse-consumer-42
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sse-consumer-42
+  template:
+    metadata:
+      labels:
+        app: sse-consumer-42
+        base-url: 10endpoint.example.com
+    spec:
+      containers:
+      - args:
+        - 'echo BASE_URL: $BASE_URL; /bin/sleep infinity'
+        command:
+        - bash
+        - -c
+        envFrom:
+        - configMapRef:
+            name: sse-consumer-config
+        image: tutum/curl
+        imagePullPolicy: IfNotPresent
+        name: sse-consumer-42
+      terminationGracePeriodSeconds: 2
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: sse-consumer-43
+  name: sse-consumer-43
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sse-consumer-43
+  template:
+    metadata:
+      labels:
+        app: sse-consumer-43
+        base-url: 10endpoint.example.com
+    spec:
+      containers:
+      - args:
+        - 'echo BASE_URL: $BASE_URL; /bin/sleep infinity'
+        command:
+        - bash
+        - -c
+        envFrom:
+        - configMapRef:
+            name: sse-consumer-config
+        image: tutum/curl
+        imagePullPolicy: IfNotPresent
+        name: sse-consumer-43
+      terminationGracePeriodSeconds: 2
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: sse-consumer-44
+  name: sse-consumer-44
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sse-consumer-44
+  template:
+    metadata:
+      labels:
+        app: sse-consumer-44
+        base-url: 10endpoint.example.com
+    spec:
+      containers:
+      - args:
+        - 'echo BASE_URL: $BASE_URL; /bin/sleep infinity'
+        command:
+        - bash
+        - -c
+        envFrom:
+        - configMapRef:
+            name: sse-consumer-config
+        image: tutum/curl
+        imagePullPolicy: IfNotPresent
+        name: sse-consumer-44
+      terminationGracePeriodSeconds: 2
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: sse-consumer-45
+  name: sse-consumer-45
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sse-consumer-45
+  template:
+    metadata:
+      labels:
+        app: sse-consumer-45
+        base-url: 10endpoint.example.com
+    spec:
+      containers:
+      - args:
+        - 'echo BASE_URL: $BASE_URL; /bin/sleep infinity'
+        command:
+        - bash
+        - -c
+        envFrom:
+        - configMapRef:
+            name: sse-consumer-config
+        image: tutum/curl
+        imagePullPolicy: IfNotPresent
+        name: sse-consumer-45
+      terminationGracePeriodSeconds: 2
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: sse-consumer-46
+  name: sse-consumer-46
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sse-consumer-46
+  template:
+    metadata:
+      labels:
+        app: sse-consumer-46
+        base-url: 10endpoint.example.com
+    spec:
+      containers:
+      - args:
+        - 'echo BASE_URL: $BASE_URL; /bin/sleep infinity'
+        command:
+        - bash
+        - -c
+        envFrom:
+        - configMapRef:
+            name: sse-consumer-config
+        image: tutum/curl
+        imagePullPolicy: IfNotPresent
+        name: sse-consumer-46
+      terminationGracePeriodSeconds: 2
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: sse-consumer-47
+  name: sse-consumer-47
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sse-consumer-47
+  template:
+    metadata:
+      labels:
+        app: sse-consumer-47
+        base-url: 10endpoint.example.com
+    spec:
+      containers:
+      - args:
+        - 'echo BASE_URL: $BASE_URL; /bin/sleep infinity'
+        command:
+        - bash
+        - -c
+        envFrom:
+        - configMapRef:
+            name: sse-consumer-config
+        image: tutum/curl
+        imagePullPolicy: IfNotPresent
+        name: sse-consumer-47
+      terminationGracePeriodSeconds: 2
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: sse-consumer-48
+  name: sse-consumer-48
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sse-consumer-48
+  template:
+    metadata:
+      labels:
+        app: sse-consumer-48
+        base-url: 10endpoint.example.com
+    spec:
+      containers:
+      - args:
+        - 'echo BASE_URL: $BASE_URL; /bin/sleep infinity'
+        command:
+        - bash
+        - -c
+        envFrom:
+        - configMapRef:
+            name: sse-consumer-config
+        image: tutum/curl
+        imagePullPolicy: IfNotPresent
+        name: sse-consumer-48
+      terminationGracePeriodSeconds: 2
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: sse-consumer-49
+  name: sse-consumer-49
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sse-consumer-49
+  template:
+    metadata:
+      labels:
+        app: sse-consumer-49
+        base-url: 10endpoint.example.com
+    spec:
+      containers:
+      - args:
+        - 'echo BASE_URL: $BASE_URL; /bin/sleep infinity'
+        command:
+        - bash
+        - -c
+        envFrom:
+        - configMapRef:
+            name: sse-consumer-config
+        image: tutum/curl
+        imagePullPolicy: IfNotPresent
+        name: sse-consumer-49
+      terminationGracePeriodSeconds: 2
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: sse-consumer-50
+  name: sse-consumer-50
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sse-consumer-50
+  template:
+    metadata:
+      labels:
+        app: sse-consumer-50
+        base-url: 10endpoint.example.com
+    spec:
+      containers:
+      - args:
+        - 'echo BASE_URL: $BASE_URL; /bin/sleep infinity'
+        command:
+        - bash
+        - -c
+        envFrom:
+        - configMapRef:
+            name: sse-consumer-config
+        image: tutum/curl
+        imagePullPolicy: IfNotPresent
+        name: sse-consumer-50
+      terminationGracePeriodSeconds: 2
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: sse-consumer-51
+  name: sse-consumer-51
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sse-consumer-51
+  template:
+    metadata:
+      labels:
+        app: sse-consumer-51
+        base-url: 10endpoint.example.com
+    spec:
+      containers:
+      - args:
+        - 'echo BASE_URL: $BASE_URL; /bin/sleep infinity'
+        command:
+        - bash
+        - -c
+        envFrom:
+        - configMapRef:
+            name: sse-consumer-config
+        image: tutum/curl
+        imagePullPolicy: IfNotPresent
+        name: sse-consumer-51
+      terminationGracePeriodSeconds: 2
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: sse-consumer-52
+  name: sse-consumer-52
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sse-consumer-52
+  template:
+    metadata:
+      labels:
+        app: sse-consumer-52
+        base-url: 10endpoint.example.com
+    spec:
+      containers:
+      - args:
+        - 'echo BASE_URL: $BASE_URL; /bin/sleep infinity'
+        command:
+        - bash
+        - -c
+        envFrom:
+        - configMapRef:
+            name: sse-consumer-config
+        image: tutum/curl
+        imagePullPolicy: IfNotPresent
+        name: sse-consumer-52
+      terminationGracePeriodSeconds: 2
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: sse-consumer-53
+  name: sse-consumer-53
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sse-consumer-53
+  template:
+    metadata:
+      labels:
+        app: sse-consumer-53
+        base-url: 10endpoint.example.com
+    spec:
+      containers:
+      - args:
+        - 'echo BASE_URL: $BASE_URL; /bin/sleep infinity'
+        command:
+        - bash
+        - -c
+        envFrom:
+        - configMapRef:
+            name: sse-consumer-config
+        image: tutum/curl
+        imagePullPolicy: IfNotPresent
+        name: sse-consumer-53
+      terminationGracePeriodSeconds: 2
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: sse-consumer-54
+  name: sse-consumer-54
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sse-consumer-54
+  template:
+    metadata:
+      labels:
+        app: sse-consumer-54
+        base-url: 10endpoint.example.com
+    spec:
+      containers:
+      - args:
+        - 'echo BASE_URL: $BASE_URL; /bin/sleep infinity'
+        command:
+        - bash
+        - -c
+        envFrom:
+        - configMapRef:
+            name: sse-consumer-config
+        image: tutum/curl
+        imagePullPolicy: IfNotPresent
+        name: sse-consumer-54
+      terminationGracePeriodSeconds: 2

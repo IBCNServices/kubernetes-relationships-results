@@ -311,4 +311,3 @@ for i in range(5, 56, 5):
 
 
 # wait_until_pods_log(60, "sse-consumer", "4endpoint.example.com", namespace)
-

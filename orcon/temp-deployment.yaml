@@ -1,0 +1,1329 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    tengu.io/provides: sse
+  name: sse-endpoint
+spec:
+  externalName: 10endpoint.example.com
+  type: ExternalName
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: sse-consumer-0
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: sse-consumer-0
+        tengu.io/consumes: sse
+        tengu.io/relations: sse-endpoint
+    spec:
+      containers:
+      - args:
+        - 'echo BASE_URL: $BASE_URL; /bin/sleep infinity'
+        command:
+        - bash
+        - -c
+        image: tutum/curl
+        imagePullPolicy: IfNotPresent
+        name: sse-consumer-0
+      terminationGracePeriodSeconds: 2
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: sse-consumer-1
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: sse-consumer-1
+        tengu.io/consumes: sse
+        tengu.io/relations: sse-endpoint
+    spec:
+      containers:
+      - args:
+        - 'echo BASE_URL: $BASE_URL; /bin/sleep infinity'
+        command:
+        - bash
+        - -c
+        image: tutum/curl
+        imagePullPolicy: IfNotPresent
+        name: sse-consumer-1
+      terminationGracePeriodSeconds: 2
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: sse-consumer-2
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: sse-consumer-2
+        tengu.io/consumes: sse
+        tengu.io/relations: sse-endpoint
+    spec:
+      containers:
+      - args:
+        - 'echo BASE_URL: $BASE_URL; /bin/sleep infinity'
+        command:
+        - bash
+        - -c
+        image: tutum/curl
+        imagePullPolicy: IfNotPresent
+        name: sse-consumer-2
+      terminationGracePeriodSeconds: 2
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: sse-consumer-3
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: sse-consumer-3
+        tengu.io/consumes: sse
+        tengu.io/relations: sse-endpoint
+    spec:
+      containers:
+      - args:
+        - 'echo BASE_URL: $BASE_URL; /bin/sleep infinity'
+        command:
+        - bash
+        - -c
+        image: tutum/curl
+        imagePullPolicy: IfNotPresent
+        name: sse-consumer-3
+      terminationGracePeriodSeconds: 2
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: sse-consumer-4
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: sse-consumer-4
+        tengu.io/consumes: sse
+        tengu.io/relations: sse-endpoint
+    spec:
+      containers:
+      - args:
+        - 'echo BASE_URL: $BASE_URL; /bin/sleep infinity'
+        command:
+        - bash
+        - -c
+        image: tutum/curl
+        imagePullPolicy: IfNotPresent
+        name: sse-consumer-4
+      terminationGracePeriodSeconds: 2
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: sse-consumer-5
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: sse-consumer-5
+        tengu.io/consumes: sse
+        tengu.io/relations: sse-endpoint
+    spec:
+      containers:
+      - args:
+        - 'echo BASE_URL: $BASE_URL; /bin/sleep infinity'
+        command:
+        - bash
+        - -c
+        image: tutum/curl
+        imagePullPolicy: IfNotPresent
+        name: sse-consumer-5
+      terminationGracePeriodSeconds: 2
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: sse-consumer-6
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: sse-consumer-6
+        tengu.io/consumes: sse
+        tengu.io/relations: sse-endpoint
+    spec:
+      containers:
+      - args:
+        - 'echo BASE_URL: $BASE_URL; /bin/sleep infinity'
+        command:
+        - bash
+        - -c
+        image: tutum/curl
+        imagePullPolicy: IfNotPresent
+        name: sse-consumer-6
+      terminationGracePeriodSeconds: 2
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: sse-consumer-7
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: sse-consumer-7
+        tengu.io/consumes: sse
+        tengu.io/relations: sse-endpoint
+    spec:
+      containers:
+      - args:
+        - 'echo BASE_URL: $BASE_URL; /bin/sleep infinity'
+        command:
+        - bash
+        - -c
+        image: tutum/curl
+        imagePullPolicy: IfNotPresent
+        name: sse-consumer-7
+      terminationGracePeriodSeconds: 2
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: sse-consumer-8
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: sse-consumer-8
+        tengu.io/consumes: sse
+        tengu.io/relations: sse-endpoint
+    spec:
+      containers:
+      - args:
+        - 'echo BASE_URL: $BASE_URL; /bin/sleep infinity'
+        command:
+        - bash
+        - -c
+        image: tutum/curl
+        imagePullPolicy: IfNotPresent
+        name: sse-consumer-8
+      terminationGracePeriodSeconds: 2
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: sse-consumer-9
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: sse-consumer-9
+        tengu.io/consumes: sse
+        tengu.io/relations: sse-endpoint
+    spec:
+      containers:
+      - args:
+        - 'echo BASE_URL: $BASE_URL; /bin/sleep infinity'
+        command:
+        - bash
+        - -c
+        image: tutum/curl
+        imagePullPolicy: IfNotPresent
+        name: sse-consumer-9
+      terminationGracePeriodSeconds: 2
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: sse-consumer-10
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: sse-consumer-10
+        tengu.io/consumes: sse
+        tengu.io/relations: sse-endpoint
+    spec:
+      containers:
+      - args:
+        - 'echo BASE_URL: $BASE_URL; /bin/sleep infinity'
+        command:
+        - bash
+        - -c
+        image: tutum/curl
+        imagePullPolicy: IfNotPresent
+        name: sse-consumer-10
+      terminationGracePeriodSeconds: 2
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: sse-consumer-11
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: sse-consumer-11
+        tengu.io/consumes: sse
+        tengu.io/relations: sse-endpoint
+    spec:
+      containers:
+      - args:
+        - 'echo BASE_URL: $BASE_URL; /bin/sleep infinity'
+        command:
+        - bash
+        - -c
+        image: tutum/curl
+        imagePullPolicy: IfNotPresent
+        name: sse-consumer-11
+      terminationGracePeriodSeconds: 2
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: sse-consumer-12
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: sse-consumer-12
+        tengu.io/consumes: sse
+        tengu.io/relations: sse-endpoint
+    spec:
+      containers:
+      - args:
+        - 'echo BASE_URL: $BASE_URL; /bin/sleep infinity'
+        command:
+        - bash
+        - -c
+        image: tutum/curl
+        imagePullPolicy: IfNotPresent
+        name: sse-consumer-12
+      terminationGracePeriodSeconds: 2
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: sse-consumer-13
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: sse-consumer-13
+        tengu.io/consumes: sse
+        tengu.io/relations: sse-endpoint
+    spec:
+      containers:
+      - args:
+        - 'echo BASE_URL: $BASE_URL; /bin/sleep infinity'
+        command:
+        - bash
+        - -c
+        image: tutum/curl
+        imagePullPolicy: IfNotPresent
+        name: sse-consumer-13
+      terminationGracePeriodSeconds: 2
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: sse-consumer-14
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: sse-consumer-14
+        tengu.io/consumes: sse
+        tengu.io/relations: sse-endpoint
+    spec:
+      containers:
+      - args:
+        - 'echo BASE_URL: $BASE_URL; /bin/sleep infinity'
+        command:
+        - bash
+        - -c
+        image: tutum/curl
+        imagePullPolicy: IfNotPresent
+        name: sse-consumer-14
+      terminationGracePeriodSeconds: 2
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: sse-consumer-15
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: sse-consumer-15
+        tengu.io/consumes: sse
+        tengu.io/relations: sse-endpoint
+    spec:
+      containers:
+      - args:
+        - 'echo BASE_URL: $BASE_URL; /bin/sleep infinity'
+        command:
+        - bash
+        - -c
+        image: tutum/curl
+        imagePullPolicy: IfNotPresent
+        name: sse-consumer-15
+      terminationGracePeriodSeconds: 2
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: sse-consumer-16
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: sse-consumer-16
+        tengu.io/consumes: sse
+        tengu.io/relations: sse-endpoint
+    spec:
+      containers:
+      - args:
+        - 'echo BASE_URL: $BASE_URL; /bin/sleep infinity'
+        command:
+        - bash
+        - -c
+        image: tutum/curl
+        imagePullPolicy: IfNotPresent
+        name: sse-consumer-16
+      terminationGracePeriodSeconds: 2
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: sse-consumer-17
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: sse-consumer-17
+        tengu.io/consumes: sse
+        tengu.io/relations: sse-endpoint
+    spec:
+      containers:
+      - args:
+        - 'echo BASE_URL: $BASE_URL; /bin/sleep infinity'
+        command:
+        - bash
+        - -c
+        image: tutum/curl
+        imagePullPolicy: IfNotPresent
+        name: sse-consumer-17
+      terminationGracePeriodSeconds: 2
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: sse-consumer-18
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: sse-consumer-18
+        tengu.io/consumes: sse
+        tengu.io/relations: sse-endpoint
+    spec:
+      containers:
+      - args:
+        - 'echo BASE_URL: $BASE_URL; /bin/sleep infinity'
+        command:
+        - bash
+        - -c
+        image: tutum/curl
+        imagePullPolicy: IfNotPresent
+        name: sse-consumer-18
+      terminationGracePeriodSeconds: 2
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: sse-consumer-19
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: sse-consumer-19
+        tengu.io/consumes: sse
+        tengu.io/relations: sse-endpoint
+    spec:
+      containers:
+      - args:
+        - 'echo BASE_URL: $BASE_URL; /bin/sleep infinity'
+        command:
+        - bash
+        - -c
+        image: tutum/curl
+        imagePullPolicy: IfNotPresent
+        name: sse-consumer-19
+      terminationGracePeriodSeconds: 2
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: sse-consumer-20
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: sse-consumer-20
+        tengu.io/consumes: sse
+        tengu.io/relations: sse-endpoint
+    spec:
+      containers:
+      - args:
+        - 'echo BASE_URL: $BASE_URL; /bin/sleep infinity'
+        command:
+        - bash
+        - -c
+        image: tutum/curl
+        imagePullPolicy: IfNotPresent
+        name: sse-consumer-20
+      terminationGracePeriodSeconds: 2
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: sse-consumer-21
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: sse-consumer-21
+        tengu.io/consumes: sse
+        tengu.io/relations: sse-endpoint
+    spec:
+      containers:
+      - args:
+        - 'echo BASE_URL: $BASE_URL; /bin/sleep infinity'
+        command:
+        - bash
+        - -c
+        image: tutum/curl
+        imagePullPolicy: IfNotPresent
+        name: sse-consumer-21
+      terminationGracePeriodSeconds: 2
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: sse-consumer-22
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: sse-consumer-22
+        tengu.io/consumes: sse
+        tengu.io/relations: sse-endpoint
+    spec:
+      containers:
+      - args:
+        - 'echo BASE_URL: $BASE_URL; /bin/sleep infinity'
+        command:
+        - bash
+        - -c
+        image: tutum/curl
+        imagePullPolicy: IfNotPresent
+        name: sse-consumer-22
+      terminationGracePeriodSeconds: 2
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: sse-consumer-23
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: sse-consumer-23
+        tengu.io/consumes: sse
+        tengu.io/relations: sse-endpoint
+    spec:
+      containers:
+      - args:
+        - 'echo BASE_URL: $BASE_URL; /bin/sleep infinity'
+        command:
+        - bash
+        - -c
+        image: tutum/curl
+        imagePullPolicy: IfNotPresent
+        name: sse-consumer-23
+      terminationGracePeriodSeconds: 2
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: sse-consumer-24
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: sse-consumer-24
+        tengu.io/consumes: sse
+        tengu.io/relations: sse-endpoint
+    spec:
+      containers:
+      - args:
+        - 'echo BASE_URL: $BASE_URL; /bin/sleep infinity'
+        command:
+        - bash
+        - -c
+        image: tutum/curl
+        imagePullPolicy: IfNotPresent
+        name: sse-consumer-24
+      terminationGracePeriodSeconds: 2
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: sse-consumer-25
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: sse-consumer-25
+        tengu.io/consumes: sse
+        tengu.io/relations: sse-endpoint
+    spec:
+      containers:
+      - args:
+        - 'echo BASE_URL: $BASE_URL; /bin/sleep infinity'
+        command:
+        - bash
+        - -c
+        image: tutum/curl
+        imagePullPolicy: IfNotPresent
+        name: sse-consumer-25
+      terminationGracePeriodSeconds: 2
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: sse-consumer-26
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: sse-consumer-26
+        tengu.io/consumes: sse
+        tengu.io/relations: sse-endpoint
+    spec:
+      containers:
+      - args:
+        - 'echo BASE_URL: $BASE_URL; /bin/sleep infinity'
+        command:
+        - bash
+        - -c
+        image: tutum/curl
+        imagePullPolicy: IfNotPresent
+        name: sse-consumer-26
+      terminationGracePeriodSeconds: 2
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: sse-consumer-27
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: sse-consumer-27
+        tengu.io/consumes: sse
+        tengu.io/relations: sse-endpoint
+    spec:
+      containers:
+      - args:
+        - 'echo BASE_URL: $BASE_URL; /bin/sleep infinity'
+        command:
+        - bash
+        - -c
+        image: tutum/curl
+        imagePullPolicy: IfNotPresent
+        name: sse-consumer-27
+      terminationGracePeriodSeconds: 2
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: sse-consumer-28
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: sse-consumer-28
+        tengu.io/consumes: sse
+        tengu.io/relations: sse-endpoint
+    spec:
+      containers:
+      - args:
+        - 'echo BASE_URL: $BASE_URL; /bin/sleep infinity'
+        command:
+        - bash
+        - -c
+        image: tutum/curl
+        imagePullPolicy: IfNotPresent
+        name: sse-consumer-28
+      terminationGracePeriodSeconds: 2
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: sse-consumer-29
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: sse-consumer-29
+        tengu.io/consumes: sse
+        tengu.io/relations: sse-endpoint
+    spec:
+      containers:
+      - args:
+        - 'echo BASE_URL: $BASE_URL; /bin/sleep infinity'
+        command:
+        - bash
+        - -c
+        image: tutum/curl
+        imagePullPolicy: IfNotPresent
+        name: sse-consumer-29
+      terminationGracePeriodSeconds: 2
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: sse-consumer-30
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: sse-consumer-30
+        tengu.io/consumes: sse
+        tengu.io/relations: sse-endpoint
+    spec:
+      containers:
+      - args:
+        - 'echo BASE_URL: $BASE_URL; /bin/sleep infinity'
+        command:
+        - bash
+        - -c
+        image: tutum/curl
+        imagePullPolicy: IfNotPresent
+        name: sse-consumer-30
+      terminationGracePeriodSeconds: 2
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: sse-consumer-31
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: sse-consumer-31
+        tengu.io/consumes: sse
+        tengu.io/relations: sse-endpoint
+    spec:
+      containers:
+      - args:
+        - 'echo BASE_URL: $BASE_URL; /bin/sleep infinity'
+        command:
+        - bash
+        - -c
+        image: tutum/curl
+        imagePullPolicy: IfNotPresent
+        name: sse-consumer-31
+      terminationGracePeriodSeconds: 2
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: sse-consumer-32
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: sse-consumer-32
+        tengu.io/consumes: sse
+        tengu.io/relations: sse-endpoint
+    spec:
+      containers:
+      - args:
+        - 'echo BASE_URL: $BASE_URL; /bin/sleep infinity'
+        command:
+        - bash
+        - -c
+        image: tutum/curl
+        imagePullPolicy: IfNotPresent
+        name: sse-consumer-32
+      terminationGracePeriodSeconds: 2
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: sse-consumer-33
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: sse-consumer-33
+        tengu.io/consumes: sse
+        tengu.io/relations: sse-endpoint
+    spec:
+      containers:
+      - args:
+        - 'echo BASE_URL: $BASE_URL; /bin/sleep infinity'
+        command:
+        - bash
+        - -c
+        image: tutum/curl
+        imagePullPolicy: IfNotPresent
+        name: sse-consumer-33
+      terminationGracePeriodSeconds: 2
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: sse-consumer-34
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: sse-consumer-34
+        tengu.io/consumes: sse
+        tengu.io/relations: sse-endpoint
+    spec:
+      containers:
+      - args:
+        - 'echo BASE_URL: $BASE_URL; /bin/sleep infinity'
+        command:
+        - bash
+        - -c
+        image: tutum/curl
+        imagePullPolicy: IfNotPresent
+        name: sse-consumer-34
+      terminationGracePeriodSeconds: 2
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: sse-consumer-35
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: sse-consumer-35
+        tengu.io/consumes: sse
+        tengu.io/relations: sse-endpoint
+    spec:
+      containers:
+      - args:
+        - 'echo BASE_URL: $BASE_URL; /bin/sleep infinity'
+        command:
+        - bash
+        - -c
+        image: tutum/curl
+        imagePullPolicy: IfNotPresent
+        name: sse-consumer-35
+      terminationGracePeriodSeconds: 2
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: sse-consumer-36
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: sse-consumer-36
+        tengu.io/consumes: sse
+        tengu.io/relations: sse-endpoint
+    spec:
+      containers:
+      - args:
+        - 'echo BASE_URL: $BASE_URL; /bin/sleep infinity'
+        command:
+        - bash
+        - -c
+        image: tutum/curl
+        imagePullPolicy: IfNotPresent
+        name: sse-consumer-36
+      terminationGracePeriodSeconds: 2
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: sse-consumer-37
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: sse-consumer-37
+        tengu.io/consumes: sse
+        tengu.io/relations: sse-endpoint
+    spec:
+      containers:
+      - args:
+        - 'echo BASE_URL: $BASE_URL; /bin/sleep infinity'
+        command:
+        - bash
+        - -c
+        image: tutum/curl
+        imagePullPolicy: IfNotPresent
+        name: sse-consumer-37
+      terminationGracePeriodSeconds: 2
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: sse-consumer-38
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: sse-consumer-38
+        tengu.io/consumes: sse
+        tengu.io/relations: sse-endpoint
+    spec:
+      containers:
+      - args:
+        - 'echo BASE_URL: $BASE_URL; /bin/sleep infinity'
+        command:
+        - bash
+        - -c
+        image: tutum/curl
+        imagePullPolicy: IfNotPresent
+        name: sse-consumer-38
+      terminationGracePeriodSeconds: 2
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: sse-consumer-39
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: sse-consumer-39
+        tengu.io/consumes: sse
+        tengu.io/relations: sse-endpoint
+    spec:
+      containers:
+      - args:
+        - 'echo BASE_URL: $BASE_URL; /bin/sleep infinity'
+        command:
+        - bash
+        - -c
+        image: tutum/curl
+        imagePullPolicy: IfNotPresent
+        name: sse-consumer-39
+      terminationGracePeriodSeconds: 2
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: sse-consumer-40
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: sse-consumer-40
+        tengu.io/consumes: sse
+        tengu.io/relations: sse-endpoint
+    spec:
+      containers:
+      - args:
+        - 'echo BASE_URL: $BASE_URL; /bin/sleep infinity'
+        command:
+        - bash
+        - -c
+        image: tutum/curl
+        imagePullPolicy: IfNotPresent
+        name: sse-consumer-40
+      terminationGracePeriodSeconds: 2
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: sse-consumer-41
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: sse-consumer-41
+        tengu.io/consumes: sse
+        tengu.io/relations: sse-endpoint
+    spec:
+      containers:
+      - args:
+        - 'echo BASE_URL: $BASE_URL; /bin/sleep infinity'
+        command:
+        - bash
+        - -c
+        image: tutum/curl
+        imagePullPolicy: IfNotPresent
+        name: sse-consumer-41
+      terminationGracePeriodSeconds: 2
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: sse-consumer-42
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: sse-consumer-42
+        tengu.io/consumes: sse
+        tengu.io/relations: sse-endpoint
+    spec:
+      containers:
+      - args:
+        - 'echo BASE_URL: $BASE_URL; /bin/sleep infinity'
+        command:
+        - bash
+        - -c
+        image: tutum/curl
+        imagePullPolicy: IfNotPresent
+        name: sse-consumer-42
+      terminationGracePeriodSeconds: 2
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: sse-consumer-43
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: sse-consumer-43
+        tengu.io/consumes: sse
+        tengu.io/relations: sse-endpoint
+    spec:
+      containers:
+      - args:
+        - 'echo BASE_URL: $BASE_URL; /bin/sleep infinity'
+        command:
+        - bash
+        - -c
+        image: tutum/curl
+        imagePullPolicy: IfNotPresent
+        name: sse-consumer-43
+      terminationGracePeriodSeconds: 2
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: sse-consumer-44
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: sse-consumer-44
+        tengu.io/consumes: sse
+        tengu.io/relations: sse-endpoint
+    spec:
+      containers:
+      - args:
+        - 'echo BASE_URL: $BASE_URL; /bin/sleep infinity'
+        command:
+        - bash
+        - -c
+        image: tutum/curl
+        imagePullPolicy: IfNotPresent
+        name: sse-consumer-44
+      terminationGracePeriodSeconds: 2
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: sse-consumer-45
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: sse-consumer-45
+        tengu.io/consumes: sse
+        tengu.io/relations: sse-endpoint
+    spec:
+      containers:
+      - args:
+        - 'echo BASE_URL: $BASE_URL; /bin/sleep infinity'
+        command:
+        - bash
+        - -c
+        image: tutum/curl
+        imagePullPolicy: IfNotPresent
+        name: sse-consumer-45
+      terminationGracePeriodSeconds: 2
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: sse-consumer-46
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: sse-consumer-46
+        tengu.io/consumes: sse
+        tengu.io/relations: sse-endpoint
+    spec:
+      containers:
+      - args:
+        - 'echo BASE_URL: $BASE_URL; /bin/sleep infinity'
+        command:
+        - bash
+        - -c
+        image: tutum/curl
+        imagePullPolicy: IfNotPresent
+        name: sse-consumer-46
+      terminationGracePeriodSeconds: 2
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: sse-consumer-47
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: sse-consumer-47
+        tengu.io/consumes: sse
+        tengu.io/relations: sse-endpoint
+    spec:
+      containers:
+      - args:
+        - 'echo BASE_URL: $BASE_URL; /bin/sleep infinity'
+        command:
+        - bash
+        - -c
+        image: tutum/curl
+        imagePullPolicy: IfNotPresent
+        name: sse-consumer-47
+      terminationGracePeriodSeconds: 2
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: sse-consumer-48
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: sse-consumer-48
+        tengu.io/consumes: sse
+        tengu.io/relations: sse-endpoint
+    spec:
+      containers:
+      - args:
+        - 'echo BASE_URL: $BASE_URL; /bin/sleep infinity'
+        command:
+        - bash
+        - -c
+        image: tutum/curl
+        imagePullPolicy: IfNotPresent
+        name: sse-consumer-48
+      terminationGracePeriodSeconds: 2
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: sse-consumer-49
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: sse-consumer-49
+        tengu.io/consumes: sse
+        tengu.io/relations: sse-endpoint
+    spec:
+      containers:
+      - args:
+        - 'echo BASE_URL: $BASE_URL; /bin/sleep infinity'
+        command:
+        - bash
+        - -c
+        image: tutum/curl
+        imagePullPolicy: IfNotPresent
+        name: sse-consumer-49
+      terminationGracePeriodSeconds: 2
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: sse-consumer-50
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: sse-consumer-50
+        tengu.io/consumes: sse
+        tengu.io/relations: sse-endpoint
+    spec:
+      containers:
+      - args:
+        - 'echo BASE_URL: $BASE_URL; /bin/sleep infinity'
+        command:
+        - bash
+        - -c
+        image: tutum/curl
+        imagePullPolicy: IfNotPresent
+        name: sse-consumer-50
+      terminationGracePeriodSeconds: 2
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: sse-consumer-51
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: sse-consumer-51
+        tengu.io/consumes: sse
+        tengu.io/relations: sse-endpoint
+    spec:
+      containers:
+      - args:
+        - 'echo BASE_URL: $BASE_URL; /bin/sleep infinity'
+        command:
+        - bash
+        - -c
+        image: tutum/curl
+        imagePullPolicy: IfNotPresent
+        name: sse-consumer-51
+      terminationGracePeriodSeconds: 2
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: sse-consumer-52
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: sse-consumer-52
+        tengu.io/consumes: sse
+        tengu.io/relations: sse-endpoint
+    spec:
+      containers:
+      - args:
+        - 'echo BASE_URL: $BASE_URL; /bin/sleep infinity'
+        command:
+        - bash
+        - -c
+        image: tutum/curl
+        imagePullPolicy: IfNotPresent
+        name: sse-consumer-52
+      terminationGracePeriodSeconds: 2
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: sse-consumer-53
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: sse-consumer-53
+        tengu.io/consumes: sse
+        tengu.io/relations: sse-endpoint
+    spec:
+      containers:
+      - args:
+        - 'echo BASE_URL: $BASE_URL; /bin/sleep infinity'
+        command:
+        - bash
+        - -c
+        image: tutum/curl
+        imagePullPolicy: IfNotPresent
+        name: sse-consumer-53
+      terminationGracePeriodSeconds: 2
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: sse-consumer-54
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: sse-consumer-54
+        tengu.io/consumes: sse
+        tengu.io/relations: sse-endpoint
+    spec:
+      containers:
+      - args:
+        - 'echo BASE_URL: $BASE_URL; /bin/sleep infinity'
+        command:
+        - bash
+        - -c
+        image: tutum/curl
+        imagePullPolicy: IfNotPresent
+        name: sse-consumer-54
+      terminationGracePeriodSeconds: 2

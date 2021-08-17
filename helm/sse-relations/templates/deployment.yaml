@@ -1,0 +1,36 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: sse-consumer-config
+data:
+  BASE_URL: {{ .Values.sseServerBaseUrl }}
+{{- range until (int .Values.numConsumers) }}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ list "sse-consumer" . | join "-" }}
+  labels:
+    app: {{ list "sse-consumer" . | join "-" }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ list "sse-consumer" . | join "-" }}
+  template:
+    metadata:
+      labels:
+        app: {{ list "sse-consumer" . | join "-" }}
+        base-url: {{ $.Values.sseServerBaseUrl }}
+    spec:
+      terminationGracePeriodSeconds: 2
+      containers:
+      - name: {{ list "sse-consumer" . | join "-" }}
+        image: tutum/curl
+        command: ["bash", "-c"]
+        args: ["echo BASE_URL: $BASE_URL; /bin/sleep infinity"]
+        imagePullPolicy: IfNotPresent
+        envFrom:
+          - configMapRef:
+              name: sse-consumer-config
+{{- end }}
